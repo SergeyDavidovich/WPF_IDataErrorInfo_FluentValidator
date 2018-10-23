@@ -49,6 +49,21 @@
             </TextBox>
         </StackPanel>
 
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Age" Margin="10" Width="150" TextAlignment="Right"/>
+            <TextBox Text="{Binding Age, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Width="200" Margin="10">
+                <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <!-- Placeholder for the TextBox itself -->
+                            <AdornedElementPlaceholder x:Name="textBox" VerticalAlignment="Center"/>
+                            <TextBlock Margin="10" Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
+            </TextBox>
+        </StackPanel>
+
         <Button Content="Submit" Width="100" Margin="0,100,0,0"/>
     </StackPanel>
 </Window>

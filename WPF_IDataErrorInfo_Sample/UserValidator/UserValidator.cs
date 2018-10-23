@@ -16,12 +16,15 @@ namespace WpfFluentValidationExample.Lib
             RuleFor(user => user.Email)
                 .NotEmpty().WithMessage("Must be not empty")
                 .EmailAddress().WithMessage("Please Specify a Valid E-Mail Address");
+            
 
             RuleFor(user => user.Zip)
                 .NotEmpty().WithMessage("Must be not empty")
                 .MaximumLength(5).WithMessage("Please Enter a Valid Zip Code")
                 .Must(BeAValidZip).WithMessage("Please Enter a Valid Zip Code");
-
+            RuleFor(user => user.Age)
+                .LessThan(100).WithMessage("Must be less then 100")
+                .GreaterThan(18).WithMessage("Must be greater then 18");
 
         }
 

@@ -11,6 +11,7 @@ namespace WPF_IDataErrorInfo_Sample.ViewModels
         private string _zip;
         private string _email;
         private string _name;
+        private int? _age=null;
 
         public UserViewModel()
         {
@@ -44,6 +45,16 @@ namespace WPF_IDataErrorInfo_Sample.ViewModels
             {
                 _zip = value;
                 OnPropertyChanged("Zip");
+            }
+        }
+
+        public int? Age
+        {
+            get { return _age; }
+            set
+            {
+                _age = value;
+                OnPropertyChanged("Age");
             }
         }
 
