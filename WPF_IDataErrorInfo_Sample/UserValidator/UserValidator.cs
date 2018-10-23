@@ -9,26 +9,23 @@ namespace WpfFluentValidationExample.Lib
         public UserValidator()
         {
             RuleFor(user => user.Name)
-                .NotEmpty().WithMessage("Must be not empty")
+                .NotEmpty().WithMessage("Mustn't be empty")
                 .Length(5).WithMessage("Not equal 5");
 
-
             RuleFor(user => user.Email)
-                .NotEmpty().WithMessage("Must be not empty")
+                .NotEmpty().WithMessage("Mustn't be empty")
                 .EmailAddress().WithMessage("Please Specify a Valid E-Mail Address");
-            
 
             RuleFor(user => user.Zip)
-                .NotEmpty().WithMessage("Must be not empty")
-                .MaximumLength(5).WithMessage("Please Enter a Valid Zip Code")
-                .Must(BeAValidZip).WithMessage("Please Enter a Valid Zip Code");
+                .NotEmpty().WithMessage("Mustn't be empty")
+                .Must(ValidZip).WithMessage("Not valid Zip code");
             RuleFor(user => user.Age)
+                .NotEmpty().WithMessage("Mustn't be empty")
                 .LessThan(100).WithMessage("Must be less then 100")
                 .GreaterThan(18).WithMessage("Must be greater then 18");
-
         }
 
-        private static bool BeAValidZip(string zip)
+        private static bool ValidZip(string zip)
         {
             if (!string.IsNullOrEmpty(zip))
             {

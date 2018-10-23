@@ -45,6 +45,7 @@ namespace WPF_IDataErrorInfo_Sample.ViewModels
             {
                 _zip = value;
                 OnPropertyChanged("Zip");
+                
             }
         }
 
@@ -62,9 +63,9 @@ namespace WPF_IDataErrorInfo_Sample.ViewModels
         {
             get
             {
-                var firstOrDefault = _userValidator.Validate(this).Errors.FirstOrDefault(lol => lol.PropertyName == columnName);
-                if (firstOrDefault != null)
-                    return _userValidator != null ? firstOrDefault.ErrorMessage : "";
+                var firstError = _userValidator.Validate(this).Errors.FirstOrDefault(e => e.PropertyName == columnName);
+                if (firstError != null)
+                    return _userValidator != null ? firstError.ErrorMessage : "";
                 return "";
             }
         }
@@ -86,7 +87,7 @@ namespace WPF_IDataErrorInfo_Sample.ViewModels
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+             public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged(string propertyName)
         {
